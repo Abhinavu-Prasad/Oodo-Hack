@@ -1,0 +1,23 @@
+# .gitignore
+
+# -----------------
+# 1. PYTHON/DJANGO
+# -----------------
+# Virtual Environment
+venv/
+
+# Byte-compiled files
+*.pyc
+_pycache_/
+
+# Django specific files
+/stockmaster_backend/.env
+/stockmaster_backend/local_settings.py
+/stockmaster_backend/db.sqlite3
+
+# -----------------
+# 2. JAVASCRIPT/REACT
+# -----------------
+# Node modules
+stockmaster_frontend/node_modules/
+stockmaster_frontend/build/
