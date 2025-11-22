@@ -120,3 +120,14 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# stockmaster_backend/stockmaster_main/urls.py
+from django.contrib import admin
+from django.urls import path, include
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    
+    # API Endpoints
+    path('api/', include('inventory.urls')), # <--- Include all inventory/auth URLs here
+]
