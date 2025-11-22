@@ -34,3 +34,26 @@ class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
         token['is_staff'] = user.is_staff
         
         return token
+    
+# stockmaster_backend/inventory/serializers.py (Continued from Step 1.2)
+
+# ... (Existing imports and User serializers) ...
+from .models import Category, Product 
+
+# --- 3. Category Serializer ---
+class CategorySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Category
+        fields = '__all__'
+
+# --- 4. Product Serializer ---
+class ProductSerializer(serializers.ModelSerializer):
+    # Field to display the category name instead of just the ID
+    category_name = serializers.CharField(source='category.name', read_only=True)
+    
+    class Meta:
+        model = Product
+        # Include 'stock_quantity' and 'reorder_point' for the dashboard/alerts
+        fields = ['id', 'name', 'sku', 'category', 'category_name', 'unit_of_measure', 'stock_quantity', 'reorder_point']
+        # Ensure SKU is validated as unique
+        extra_kwargs = {'sku': {'validators': []}}
